@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCN Appeal Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">PCN Appeal Prediction</h2>
+        <nav class="nav justify-content-center">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/dashboard">Dashboard</a>
+        </nav>
+        <form action="/predict" method="post" class="mt-4">
+            <div class="mb-3">
+                <label for="vehicleType" class="form-label">Vehicle Type</label>
+                <input type="text" class="form-control" id="vehicleType" name="vehicleType" required>
+            </div>
+            <div class="mb-3">
+                <label for="contraventionCode" class="form-label">Contravention Code</label>
+                <input type="text" class="form-control" id="contraventionCode" name="contraventionCode" required>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" class="form-control" id="location" name="location" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Predict Appeal</button>
+        </form>
+    </div>
+</body>
+</html>

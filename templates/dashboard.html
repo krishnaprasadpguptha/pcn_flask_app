@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCN Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">PCN Appeal Dashboard</h2>
+        
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <canvas id="appealChart"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="contraventionChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var appealCtx = document.getElementById('appealChart').getContext('2d');
+        var appealChart = new Chart(appealCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Appealed', 'Not Appealed'],
+                datasets: [{
+                    data: [60, 40], // Replace with actual data
+                    backgroundColor: ['#36A2EB', '#FF6384']
+                }]
+            }
+        });
+
+        var contraventionCtx = document.getElementById('contraventionChart').getContext('2d');
+        var contraventionChart = new Chart(contraventionCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Code 01', 'Code 02', 'Code 03'], // Replace with actual data
+                datasets: [{
+                    label: 'Number of Contraventions',
+                    data: [30, 50, 20], // Replace with actual data
+                    backgroundColor: '#FFCE56'
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

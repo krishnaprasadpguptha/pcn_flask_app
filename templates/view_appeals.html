@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Appeals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Appeal Records</h2>
+        
+        <form method="GET" action="/search_appeals" class="mb-3">
+            <input type="text" name="query" class="form-control" placeholder="Search appeals..." required>
+            <button type="submit" class="btn btn-primary mt-2">Search</button>
+        </form>
+
+        {% if appeals %}
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Appeal ID</th>
+                        <th>Vehicle Type</th>
+                        <th>Contravention Code</th>
+                        <th>Location</th>
+                        <th>Appeal Outcome</th>
+                        <th>Update Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for appeal in appeals %}
+                    <tr>
+                        <td>{{ appeal["Appeal ID"] }}</td>
+                        <td>{{ appeal["VehicleType"] }}</td>
+                        <td>{{ appeal["ContraventionCode"] }}</td>
+                        <td>{{ appeal["Location"] }}</td>
+                        <td>{{ appeal["AppealOutcome"] }}</td>
+                        <td>
+                            <form method="POST" action="/update_appeal">
+                                <input type="hidden" name="appeal_id" value="{{ appeal['Appeal ID'] }}">
+                                <select name="new_status" class="form-control">
+                                    <option value="Approved">Approved</option>
+                                    <option value="Rejected">Rejected</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                                <button type="submit" class="btn btn-sm btn-success mt-1">Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No appeals found.</p>
+        {% endif %}
+
+        <a href="/" class="btn btn-secondary">Back to Home</a>
+    </div>
+</body>
+</html>
